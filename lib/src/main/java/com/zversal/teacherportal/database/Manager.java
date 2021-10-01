@@ -1,19 +1,45 @@
 package com.zversal.teacherportal.database;
+
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
-public class Manager {
-	static final String DB_URL = "jdbc:mysql://localhost:3306/test";
-    static final String USER = "raghav";
-    static final String PASS = "1234";
-    public static Connection con = null;
-    
-    
-    public Connection getConnection() throws SQLException {
-    	return con = DriverManager.getConnection(DB_URL, USER, PASS);
+public class Manager
+{
+
+    public static Properties loadPropertiesFile() throws Exception {
+ 
+        Properties prop = new Properties();
+        InputStream in = new FileInputStream("database.properties");
+        prop.load(in);
+        in.close();
+        return prop;
     }
-    
-	
 
-}
+    public Connection con = null;
+    public Manager()
+    {
+            try {
+
+                Properties prop = loadPropertiesFile();
+
+                String driverClass = prop.getProperty("test.jdbc.dev.driver");
+                String url = prop.getProperty("test.jdbc.dev.url");
+                String username = prop.getProperty("test.jdbc.dev.username");
+                String password = prop.getProperty("test.jdbc.dev.password");
+
+                Class.forName(driverClass);
+
+                con = DriverManager.getConnection(url, username, password);
+
+                }catch (SQLException e) {
+                e.printStackTrace();
+                } 
+                catch (Exception e) {
+                e.printStackTrace();
+                } 
+        }
+    }

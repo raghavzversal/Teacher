@@ -5,7 +5,6 @@ import static spark.Spark.get;
 import static spark.Spark.post;
 import static spark.Spark.put;
 import static spark.Spark.delete;
-import static spark.Spark.port;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.zversal.teacherportal.controller.Controller;

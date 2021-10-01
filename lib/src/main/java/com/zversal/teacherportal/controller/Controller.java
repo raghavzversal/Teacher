@@ -1,29 +1,50 @@
 package com.zversal.teacherportal.controller;
 import java.util.HashMap;
-
-import org.checkerframework.checker.formatter.qual.ReturnsFormat;
-
 import com.google.gson.Gson;
 import com.zversal.teacherportal.dao.Dao;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 
 import spark.Route;
 public class Controller {
-    public static final Dao teacher_crud = new Dao();
+	public int id = 0;
+    public String name = null;
+    public String department = null;
+	
+    public static Dao teacherCrud = new Dao();
     public static Gson gson = new Gson();
 	static HashMap<String, Object> map = new HashMap<>();
+	private static Logger logger = Logger.getLogger("log.txt");
 	
+    public static void init(){
+        FileHandler fh;
+        try{
+            fh=new FileHandler("log.txt");
+            logger.addHandler(fh);
+            logger.info("init");
+        }
+        catch(Exception e){
+            logger.log(Level.WARNING,"::Exception::"+e);
+
+        }
+    }
 	
 	public static final Route find = (req,res)->
 	{
+		  init();
 		try 
 		{
 			String uid = req.params("id");
 			int id = Integer.parseInt(uid);
-			map = teacher_crud.findDB(id);
+			map = teacherCrud.search(id);
 			return map;
 		}
 		catch(Exception e)
 		{
+		  logger.log(Level.WARNING,"::Exception::"+e);
 		  map.put("Error:", "Kindly check the entered id" );
 		  return map;
 		}
@@ -31,19 +52,17 @@ public class Controller {
 	};
 	public static final Route add = (req,res)->
 	{
+		  init();
 		try 
 		{
 			String val = req.body();
-			map = teacher_crud.Convert(val);
-			
-			int id = (int) map.get("id");
-			String name = (String) map.get("name");
-			String department = (String) map.get("department");
-			map.put("Result", teacher_crud.AddUser(id, name, department));
+			Controller format = gson.fromJson(val, Controller.class);
+			map.put("Operation", teacherCrud.add(format.id, format.name, format.department));
 			return map;
 		 }
 		catch(Exception e) 
 		{
+			logger.log(Level.WARNING,"::Exception::"+e);
 			map.put("Error:", "Kindly check the entered data" );
 			return map;
 		}
@@ -53,19 +72,17 @@ public class Controller {
 	 
 		public static final Route update = (req,res)->
 		{
+			  init();
 			try 
 			{
 				String val = req.body();
-				map = teacher_crud.Convert(val);
-				
-				int id = (int) map.get("id");
-				String name = (String) map.get("name");
-				String department = (String) map.get("department");
-				map.put("Result", teacher_crud.UpdateUser(id, name, department));
+				Controller format = gson.fromJson(val, Controller.class);
+				map.put("Operation", teacherCrud.update(format.id, format.name, format.department));
 				return map;
 			}
 			catch(Exception e ) 
 			{
+				logger.log(Level.WARNING,"::Exception::"+e);
 				map.put("Error:", "Kindly check the entered data" );
 				return map;
 			}
@@ -74,14 +91,16 @@ public class Controller {
 		
 		 public static final Route delete = (req,res)->
 		 {
+			  init();
 			 try {
 				    String uid = req.params("id");
 		    		int id = Integer.parseInt(uid);
-		            map.put("Result", teacher_crud.DeleteUser(id));  
+		            map.put("Operation", teacherCrud.delete(id));  
 		            return map;
 		    	 }
 		    catch(Exception e) 
 			 {
+		    	logger.log(Level.WARNING,"::Exception::"+e);
 		         map.put("Error","Kindly check the entered id");
 		         return map;
 		     }
