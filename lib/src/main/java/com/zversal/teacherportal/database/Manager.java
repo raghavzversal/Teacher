@@ -1,11 +1,11 @@
 package com.zversal.teacherportal.database;
-
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
+
+import com.zaxxer.hikari.HikariDataSource;
 
 public class Manager
 {
@@ -20,17 +20,19 @@ public class Manager
 
     public Connection con = null;
     public int port = 0;
+    private static HikariDataSource dataSource;
     public Manager()
     {
             try {
-
-                Properties prop = loadPropertiesFile();
-                String driverClass = prop.getProperty("test.jdbc.dev.driver");
-                String url = prop.getProperty("test.jdbc.dev.url");
-                String username = prop.getProperty("test.jdbc.dev.username");
-                String password = prop.getProperty("test.jdbc.dev.password");
-                Class.forName(driverClass);
-                con = DriverManager.getConnection(url, username, password);
+            	Properties prop = loadPropertiesFile();
+                dataSource = new HikariDataSource();
+                dataSource.setDriverClassName(prop.getProperty("test.jdbc.dev.driver"));
+    			
+    			dataSource.setJdbcUrl(prop.getProperty("test.jdbc.dev.url"));
+    			dataSource.setUsername(prop.getProperty("test.jdbc.dev.username"));
+    			dataSource.setPassword(prop.getProperty("test.jdbc.dev.password"));
+                
+                con = dataSource.getConnection();
                 port = Integer.parseInt(prop.getProperty("PORT"));
                 }catch (SQLException e) {
                 e.printStackTrace();

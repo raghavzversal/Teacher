@@ -1,7 +1,6 @@
 package com.zversal.teacherportal.controller;
 import java.util.HashMap;
 import com.google.gson.Gson;
-import com.zversal.teacherportal.dao.Dao;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,8 +13,6 @@ public class Controller {
     public String name = null;
     public String department = null;
 	public static Main main = new Main();
-    
-    //public static Dao teacherCrud = new Dao();
     public static Gson gson = new Gson();
 	static HashMap<String, Object> map = new HashMap<>();
 	private static Logger logger = Logger.getLogger("log.txt");
