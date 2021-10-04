@@ -2,50 +2,14 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2021-10-01T12:17:58.175648300Z</date>
-  <millis>1633090678175</millis>
-  <nanos>648300</nanos>
+  <date>2021-10-04T07:18:43.976299200Z</date>
+  <millis>1633331923976</millis>
+  <nanos>299200</nanos>
   <sequence>0</sequence>
   <logger>log.txt</logger>
   <level>INFO</level>
   <class>com.zversal.teacherportal.controller.Controller</class>
   <method>init</method>
   <thread>21</thread>
-  <message>init</message>
-</record>
-<record>
-  <date>2021-10-01T12:18:27.311023700Z</date>
-  <millis>1633090707311</millis>
-  <nanos>23700</nanos>
-  <sequence>1</sequence>
-  <logger>log.txt</logger>
-  <level>INFO</level>
-  <class>com.zversal.teacherportal.controller.Controller</class>
-  <method>init</method>
-  <thread>18</thread>
-  <message>init</message>
-</record>
-<record>
-  <date>2021-10-01T12:18:27.313023200Z</date>
-  <millis>1633090707313</millis>
-  <nanos>23200</nanos>
-  <sequence>2</sequence>
-  <logger>log.txt</logger>
-  <level>WARNING</level>
-  <class>com.zversal.teacherportal.controller.Controller</class>
-  <method>lambda$0</method>
-  <thread>18</thread>
-  <message>::Exception::java.lang.NumberFormatException: For input string: "Raghav"</message>
-</record>
-<record>
-  <date>2021-10-01T12:19:46.037141500Z</date>
-  <millis>1633090786037</millis>
-  <nanos>141500</nanos>
-  <sequence>3</sequence>
-  <logger>log.txt</logger>
-  <level>INFO</level>
-  <class>com.zversal.teacherportal.controller.Controller</class>
-  <method>init</method>
-  <thread>25</thread>
   <message>init</message>
 </record>
