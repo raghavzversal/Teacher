@@ -5,7 +5,7 @@ import com.zversal.teacherportal.dao.Dao;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import com.zversal.teacherportal.main.Main;
 
 
 import spark.Route;
@@ -13,8 +13,9 @@ public class Controller {
 	public int id = 0;
     public String name = null;
     public String department = null;
-	
-    public static Dao teacherCrud = new Dao();
+	public static Main main = new Main();
+    
+    //public static Dao teacherCrud = new Dao();
     public static Gson gson = new Gson();
 	static HashMap<String, Object> map = new HashMap<>();
 	private static Logger logger = Logger.getLogger("log.txt");
@@ -39,7 +40,7 @@ public class Controller {
 		{
 			String uid = req.params("id");
 			int id = Integer.parseInt(uid);
-			map = teacherCrud.search(id);
+			map = main.teacherCrud.search(id);
 			return map;
 		}
 		catch(Exception e)
@@ -57,7 +58,7 @@ public class Controller {
 		{
 			String val = req.body();
 			Controller format = gson.fromJson(val, Controller.class);
-			map.put("Operation", teacherCrud.add(format.id, format.name, format.department));
+			map.put("Operation",main.teacherCrud.add(format.id, format.name, format.department));
 			return map;
 		 }
 		catch(Exception e) 
@@ -77,7 +78,7 @@ public class Controller {
 			{
 				String val = req.body();
 				Controller format = gson.fromJson(val, Controller.class);
-				map.put("Operation", teacherCrud.update(format.id, format.name, format.department));
+				map.put("Operation", main.teacherCrud.update(format.id, format.name, format.department));
 				return map;
 			}
 			catch(Exception e ) 
@@ -95,7 +96,7 @@ public class Controller {
 			 try {
 				    String uid = req.params("id");
 		    		int id = Integer.parseInt(uid);
-		            map.put("Operation", teacherCrud.delete(id));  
+		            map.put("Operation", main.teacherCrud.delete(id));  
 		            return map;
 		    	 }
 		    catch(Exception e) 

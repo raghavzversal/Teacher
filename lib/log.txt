@@ -2,14 +2,50 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2021-10-04T07:18:43.976299200Z</date>
-  <millis>1633331923976</millis>
-  <nanos>299200</nanos>
+  <date>2021-10-04T07:31:33.076308900Z</date>
+  <millis>1633332693076</millis>
+  <nanos>308900</nanos>
   <sequence>0</sequence>
   <logger>log.txt</logger>
   <level>INFO</level>
   <class>com.zversal.teacherportal.controller.Controller</class>
   <method>init</method>
-  <thread>21</thread>
+  <thread>25</thread>
+  <message>init</message>
+</record>
+<record>
+  <date>2021-10-04T07:31:57.039460800Z</date>
+  <millis>1633332717039</millis>
+  <nanos>460800</nanos>
+  <sequence>1</sequence>
+  <logger>log.txt</logger>
+  <level>INFO</level>
+  <class>com.zversal.teacherportal.controller.Controller</class>
+  <method>init</method>
+  <thread>18</thread>
+  <message>init</message>
+</record>
+<record>
+  <date>2021-10-04T07:32:27.200928600Z</date>
+  <millis>1633332747200</millis>
+  <nanos>928600</nanos>
+  <sequence>2</sequence>
+  <logger>log.txt</logger>
+  <level>INFO</level>
+  <class>com.zversal.teacherportal.controller.Controller</class>
+  <method>init</method>
+  <thread>24</thread>
+  <message>init</message>
+</record>
+<record>
+  <date>2021-10-04T07:32:35.518912200Z</date>
+  <millis>1633332755518</millis>
+  <nanos>912200</nanos>
+  <sequence>3</sequence>
+  <logger>log.txt</logger>
+  <level>INFO</level>
+  <class>com.zversal.teacherportal.controller.Controller</class>
+  <method>init</method>
+  <thread>23</thread>
   <message>init</message>
 </record>

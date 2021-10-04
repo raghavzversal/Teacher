@@ -9,12 +9,14 @@ import static spark.Spark.delete;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.zversal.teacherportal.controller.Controller;
+import com.zversal.teacherportal.dao.Dao;
 import com.zversal.teacherportal.database.Manager;
 
 import static spark.Spark.port;
 
 public class Main {
 	public static Manager getPort = new Manager();
+	public static Dao teacherCrud = new Dao();
 	public static void main(String[] args) throws IOException 
 	{
 		Gson gson = new GsonBuilder().disableHtmlEscaping().create();
