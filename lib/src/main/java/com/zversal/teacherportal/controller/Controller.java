@@ -37,14 +37,14 @@ public class Controller {
 		{
 			String uid = req.params("id");
 			int id = Integer.parseInt(uid);
-			map = main.teacherCrud.search(id);
-			return map;
+			map.put("Data", main.teacherCrud.search(id));
+			return map.get("Data");
 		}
 		catch(Exception e)
 		{
 		  logger.log(Level.WARNING,"::Exception::"+e);
-		  map.put("Error:", "Kindly check the entered id" );
-		  return map;
+		  map.put("Get Error", "Kindly check the entered id" );
+		  return map.get("Get Error");
 		}
 		
 	};
@@ -55,14 +55,14 @@ public class Controller {
 		{
 			String val = req.body();
 			Controller format = gson.fromJson(val, Controller.class);
-			map.put("Operation",main.teacherCrud.add(format.id, format.name, format.department));
-			return map;
+			map.put("Insertion",main.teacherCrud.add(format.id, format.name, format.department));
+			return map.get("Insertion");
 		 }
 		catch(Exception e) 
 		{
 			logger.log(Level.WARNING,"::Exception::"+e);
-			map.put("Error:", "Kindly check the entered data" );
-			return map;
+			map.put("Insertion error", "Kindly check the entered data" );
+			return map.get("Insertion error");
 		}
 		     
 			 
@@ -75,14 +75,14 @@ public class Controller {
 			{
 				String val = req.body();
 				Controller format = gson.fromJson(val, Controller.class);
-				map.put("Operation", main.teacherCrud.update(format.id, format.name, format.department));
-				return map;
+				map.put("Updation", main.teacherCrud.update(format.id, format.name, format.department));
+				return map.get("Updation");
 			}
 			catch(Exception e ) 
 			{
 				logger.log(Level.WARNING,"::Exception::"+e);
-				map.put("Error:", "Kindly check the entered data" );
-				return map;
+				map.put("Updation error", "Kindly check the entered data" );
+				return map.get("Updation error");
 			}
 			
 		};
@@ -93,14 +93,14 @@ public class Controller {
 			 try {
 				    String uid = req.params("id");
 		    		int id = Integer.parseInt(uid);
-		            map.put("Operation", main.teacherCrud.delete(id));  
-		            return map;
+		            map.put("Deletion", main.teacherCrud.delete(id));  
+		            return map.get("Deletion");
 		    	 }
 		    catch(Exception e) 
 			 {
 		    	logger.log(Level.WARNING,"::Exception::"+e);
-		         map.put("Error","Kindly check the entered id");
-		         return map;
+		         map.put("Deletion error","Kindly check the entered id");
+		         return map.get("Deletion error");
 		     }
 			 
 		 };

@@ -28,6 +28,7 @@ public class Dao {
                     map.put("name",set.getString("t_name"));
                     map.put("department",set.getString("t_department"));
                     return map;
+                    
                 }
             }
        }  
@@ -57,7 +58,7 @@ public class Dao {
                 stat.setString(2, name);
                 stat.setString(3, department);
                 stat.executeUpdate();
-                return "Insertion went well";
+                return "Successful";
             }
        }  
        catch(Exception e) 
@@ -82,7 +83,7 @@ public class Dao {
                 stat.setString(1, name);
                 stat.setString(2, department);
                 stat.executeUpdate();
-                return "Updation Successful";
+                return "Successful";
             }
        }  
        catch(Exception e) 
@@ -102,7 +103,7 @@ public class Dao {
 			PreparedStatement stat = db.con.prepareStatement(" delete from demo where t_id=? ");
 	        stat.setInt(1, id);
 	        stat.executeUpdate();
-	        return "Deletion Successful";
+	        return "Successful";
 			}
 	              
 		}
