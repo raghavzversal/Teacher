@@ -2,38 +2,122 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2021-10-05T06:07:55.113507900Z</date>
-  <millis>1633414075113</millis>
-  <nanos>507900</nanos>
+  <date>2021-10-05T18:34:24.670636700Z</date>
+  <millis>1633458864670</millis>
+  <nanos>636700</nanos>
   <sequence>0</sequence>
   <logger>log.txt</logger>
   <level>INFO</level>
-  <class>com.zversal.teacherportal.controller.Controller</class>
+  <class>com.zversal.teacherportal.util.LoggerUtil</class>
   <method>init</method>
   <thread>27</thread>
   <message>init</message>
 </record>
 <record>
-  <date>2021-10-05T06:08:13.756744200Z</date>
-  <millis>1633414093756</millis>
-  <nanos>744200</nanos>
+  <date>2021-10-05T18:34:24.899981900Z</date>
+  <millis>1633458864899</millis>
+  <nanos>981900</nanos>
   <sequence>1</sequence>
   <logger>log.txt</logger>
   <level>INFO</level>
   <class>com.zversal.teacherportal.controller.Controller</class>
-  <method>init</method>
-  <thread>22</thread>
-  <message>init</message>
+  <method>lambda$0</method>
+  <thread>27</thread>
+  <message>Finding By Id</message>
 </record>
 <record>
-  <date>2021-10-05T06:08:28.424844800Z</date>
-  <millis>1633414108424</millis>
-  <nanos>844800</nanos>
+  <date>2021-10-05T18:35:12.270223700Z</date>
+  <millis>1633458912270</millis>
+  <nanos>223700</nanos>
   <sequence>2</sequence>
   <logger>log.txt</logger>
   <level>INFO</level>
-  <class>com.zversal.teacherportal.controller.Controller</class>
+  <class>com.zversal.teacherportal.util.LoggerUtil</class>
   <method>init</method>
-  <thread>28</thread>
+  <thread>21</thread>
   <message>init</message>
+</record>
+<record>
+  <date>2021-10-05T18:35:13.997165500Z</date>
+  <millis>1633458913997</millis>
+  <nanos>165500</nanos>
+  <sequence>3</sequence>
+  <logger>log.txt</logger>
+  <level>INFO</level>
+  <class>com.zversal.teacherportal.controller.Controller</class>
+  <method>lambda$1</method>
+  <thread>21</thread>
+  <message>Add a user</message>
+</record>
+<record>
+  <date>2021-10-05T18:35:26.936070200Z</date>
+  <millis>1633458926936</millis>
+  <nanos>70200</nanos>
+  <sequence>4</sequence>
+  <logger>log.txt</logger>
+  <level>INFO</level>
+  <class>com.zversal.teacherportal.util.LoggerUtil</class>
+  <method>init</method>
+  <thread>25</thread>
+  <message>init</message>
+</record>
+<record>
+  <date>2021-10-05T18:35:27.196948600Z</date>
+  <millis>1633458927196</millis>
+  <nanos>948600</nanos>
+  <sequence>5</sequence>
+  <logger>log.txt</logger>
+  <level>INFO</level>
+  <class>com.zversal.teacherportal.controller.Controller</class>
+  <method>lambda$2</method>
+  <thread>25</thread>
+  <message>Update user</message>
+</record>
+<record>
+  <date>2021-10-05T18:35:59.853193400Z</date>
+  <millis>1633458959853</millis>
+  <nanos>193400</nanos>
+  <sequence>6</sequence>
+  <logger>log.txt</logger>
+  <level>INFO</level>
+  <class>com.zversal.teacherportal.util.LoggerUtil</class>
+  <method>init</method>
+  <thread>26</thread>
+  <message>init</message>
+</record>
+<record>
+  <date>2021-10-05T18:36:00.002942400Z</date>
+  <millis>1633458960002</millis>
+  <nanos>942400</nanos>
+  <sequence>7</sequence>
+  <logger>log.txt</logger>
+  <level>INFO</level>
+  <class>com.zversal.teacherportal.controller.Controller</class>
+  <method>lambda$3</method>
+  <thread>26</thread>
+  <message>Delete by id</message>
+</record>
+<record>
+  <date>2021-10-05T18:36:21.175865500Z</date>
+  <millis>1633458981175</millis>
+  <nanos>865500</nanos>
+  <sequence>8</sequence>
+  <logger>log.txt</logger>
+  <level>INFO</level>
+  <class>com.zversal.teacherportal.util.LoggerUtil</class>
+  <method>init</method>
+  <thread>21</thread>
+  <message>init</message>
+</record>
+<record>
+  <date>2021-10-05T18:36:21.177864100Z</date>
+  <millis>1633458981177</millis>
+  <nanos>864100</nanos>
+  <sequence>9</sequence>
+  <logger>log.txt</logger>
+  <level>WARNING</level>
+  <class>com.zversal.teacherportal.controller.Controller</class>
+  <method>lambda$0</method>
+  <thread>21</thread>
+  <message>::Exception::java.lang.NumberFormatException: For input string: "Test-run"</message>
 </record>

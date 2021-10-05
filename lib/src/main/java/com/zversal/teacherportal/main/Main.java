@@ -10,23 +10,27 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.zversal.teacherportal.controller.Controller;
 import com.zversal.teacherportal.dao.Dao;
-import com.zversal.teacherportal.database.Manager;
-
+import com.zversal.teacherportal.database.ManagerDB;
+import com.zversal.teacherportal.util.LoggerUtil;
+import com.zversal.teacherportal.util.ReadableProperties;
 import static spark.Spark.port;
 
 public class Main {
-	public static Manager getPort = new Manager();
+	public static ManagerDB db = new ManagerDB();
 	public static Dao teacherCrud = new Dao();
+	public static ReadableProperties conArguments = new ReadableProperties();
+	public static LoggerUtil record = new LoggerUtil();
+	public static Gson gson = new GsonBuilder().disableHtmlEscaping().create();
+	
 	public static void main(String[] args) throws IOException 
 	{
-		Gson gson = new GsonBuilder().disableHtmlEscaping().create();
+		port(conArguments.getPort());
 		path("/user", () -> 
 		{
-			port(getPort.port);
-			post("/add", Controller.add, gson::toJson );
-			get("/find/:id", Controller.find, gson::toJson);
-			put("/update", Controller.update, gson::toJson);
-			delete("/delete/:id", Controller.delete, gson::toJson);
+			post("/add", Controller.addByUser, gson::toJson );
+			get("/find/:id", Controller.findById, gson::toJson);
+			put("/update", Controller.updateByUser, gson::toJson);
+			delete("/delete/:id", Controller.deleteById, gson::toJson);
          });
 		
 		after((req,res)->

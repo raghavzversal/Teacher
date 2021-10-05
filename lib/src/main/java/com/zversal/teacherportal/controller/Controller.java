@@ -1,106 +1,109 @@
 package com.zversal.teacherportal.controller;
 import java.util.HashMap;
-import com.google.gson.Gson;
-import java.util.logging.FileHandler;
 import java.util.logging.Level;
-import java.util.logging.Logger;
-import com.zversal.teacherportal.main.Main;
+
+import com.zversal.teacherportal.util.LoggerUtil;
+
+import static com.zversal.teacherportal.main.Main.gson;
+import static com.zversal.teacherportal.main.Main.teacherCrud;
+import static com.zversal.teacherportal.main.Main.record;
 
 
 import spark.Route;
 public class Controller {
-	public int id = 0;
-    public String name = null;
-    public String department = null;
-	public static Main main = new Main();
-    public static Gson gson = new Gson();
-	static HashMap<String, Object> map = new HashMap<>();
-	private static Logger logger = Logger.getLogger("log.txt");
 	
-    public static void init(){
-        FileHandler fh;
-        try{
-            fh=new FileHandler("log.txt");
-            logger.addHandler(fh);
-            logger.info("init");
-        }
-        catch(Exception e){
-            logger.log(Level.WARNING,"::Exception::"+e);
-
-        }
-    }
-	
-	public static final Route find = (req,res)->
+	public static final Route findById = (req,res)->
 	{
-		  init();
+		LoggerUtil.init();
+		LoggerUtil.logger.info("Finding By Id");
+		HashMap<String, Object> map = new HashMap<>();
 		try 
 		{
+			
 			String uid = req.params("id");
 			int id = Integer.parseInt(uid);
-			map.put("Data", main.teacherCrud.search(id));
-			return map.get("Data");
+			map = teacherCrud.searchById(id);
+			LoggerUtil.logger.log(Level.INFO,"Went well");
+			return map;
+			
 		}
 		catch(Exception e)
 		{
-		  logger.log(Level.WARNING,"::Exception::"+e);
-		  map.put("Get Error", "Kindly check the entered id" );
-		  return map.get("Get Error");
+			map.put("Read", "Failed" );
+			LoggerUtil.logger.log(Level.WARNING,"::Exception::"+e);
+			return map;
 		}
 		
 	};
-	public static final Route add = (req,res)->
+	
+	public static final Route addByUser = (req,res)->
 	{
-		  init();
+		LoggerUtil.init();
+		LoggerUtil.logger.info("Adding a user");
+		HashMap<String, String> map = new HashMap<>();
 		try 
 		{
+			
 			String val = req.body();
-			Controller format = gson.fromJson(val, Controller.class);
-			map.put("Insertion",main.teacherCrud.add(format.id, format.name, format.department));
-			return map.get("Insertion");
+			HashMap<String, String> teacherDetails = gson.fromJson(val, HashMap.class);
+			map.put("Insertion:", teacherCrud.addByUser(Integer.parseInt(teacherDetails.get("id")), teacherDetails.get("name"), teacherDetails.get("department")));
+			LoggerUtil.logger.log(Level.INFO,"Went well");
+			return map;
 		 }
 		catch(Exception e) 
 		{
-			logger.log(Level.WARNING,"::Exception::"+e);
-			map.put("Insertion error", "Kindly check the entered data" );
-			return map.get("Insertion error");
+			//logger.log(Level.WARNING,"::Exception::"+e);
+			map.put("Insertion:", "Failed");
+			LoggerUtil.logger.log(Level.WARNING,"::Exception::"+e);
+			return map;
 		}
 		     
 			 
 	 };
 	 
-		public static final Route update = (req,res)->
+		public static final Route updateByUser = (req,res)->
 		{
-			  init();
+			LoggerUtil.init();
+			LoggerUtil.logger.info("Updating user");
+			HashMap<String, String> map = new HashMap<>(); 
 			try 
 			{
+				
 				String val = req.body();
-				Controller format = gson.fromJson(val, Controller.class);
-				map.put("Updation", main.teacherCrud.update(format.id, format.name, format.department));
-				return map.get("Updation");
+				HashMap<String, String> teacherDetails = gson.fromJson(val, HashMap.class);
+				map.put("Updation", teacherCrud.updateByUser(Integer.parseInt(teacherDetails.get("id")), teacherDetails.get("name"), teacherDetails.get("department")));
+				LoggerUtil.logger.log(Level.INFO,"Went well");
+				return map;
 			}
 			catch(Exception e ) 
 			{
-				logger.log(Level.WARNING,"::Exception::"+e);
-				map.put("Updation error", "Kindly check the entered data" );
-				return map.get("Updation error");
+				//logger.log(Level.WARNING,"::Exception::"+e);
+				map.put("Updation:", "Failed");
+				LoggerUtil.logger.log(Level.WARNING,"::Exception::"+e);
+				return map;
 			}
 			
 		};
 		
-		 public static final Route delete = (req,res)->
+		 public static final Route deleteById = (req,res)->
 		 {
-			  init();
+			 LoggerUtil.init();
+			 LoggerUtil.logger.info("Deletion by id");
+			 HashMap<String, String> map = new HashMap<>(); 
 			 try {
+				 	
 				    String uid = req.params("id");
 		    		int id = Integer.parseInt(uid);
-		            map.put("Deletion", main.teacherCrud.delete(id));  
-		            return map.get("Deletion");
+		            map.put("Deletion", teacherCrud.deleteById(id));
+		            LoggerUtil.logger.log(Level.INFO,"Went well");
+		            return map;
 		    	 }
 		    catch(Exception e) 
 			 {
-		    	logger.log(Level.WARNING,"::Exception::"+e);
-		         map.put("Deletion error","Kindly check the entered id");
-		         return map.get("Deletion error");
+		    	 //logger.log(Level.WARNING,"::Exception::"+e);
+		    	map.put("Deletion:", "Failed");
+		    	LoggerUtil.logger.log(Level.WARNING,"::Exception::"+e);
+				return map;
 		     }
 			 
 		 };

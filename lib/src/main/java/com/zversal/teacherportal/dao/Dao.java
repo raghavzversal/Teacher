@@ -2,31 +2,26 @@ package com.zversal.teacherportal.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.HashMap;
-
-import com.zversal.teacherportal.database.Manager;
+import static com.zversal.teacherportal.main.Main.db;
 
 public class Dao {
-	
-	public final static Manager db = new Manager(); 
-	public final static HashMap<String, Object> map = new HashMap<>();
-	
-	
-	public HashMap<String, Object> search(int id)
+
+	public HashMap<String, Object> searchById(int id)
 	{ 
-    	
+    	HashMap<String, Object> map = new HashMap<>();
     	try 
     	{
-            if(db.con!=null)
+            if(db.getConnection()!=null)
             {
-                PreparedStatement stat = db.con.prepareStatement("select t_id, t_name, t_department from demo where t_id=?");
+                PreparedStatement stat = db.getConnection().prepareStatement("select t_id, t_name, t_department from demo where t_id=?");
                 stat.setInt(1, id);
                 ResultSet set = stat.executeQuery();
                 
                 if(set.next())
                 {
-                    map.put("id",set.getInt("t_id"));
-                    map.put("name",set.getString("t_name"));
-                    map.put("department",set.getString("t_department"));
+                    map.put("id", set.getInt("t_id"));
+                    map.put("name", set.getString("t_name"));
+                    map.put("department", set.getString("t_department"));
                     return map;
                     
                 }
@@ -34,10 +29,10 @@ public class Dao {
        }  
        catch(Exception e) 
     	{
-       		map.put("Error", "Kindly check entered id");
+       		map.put("Error", "Check entered values");
        		return map;
         }
-    	map.put("Error", "Kindly check entered id");
+    	map.put("Error", "Contact Developer");
    		return map;
 		
 		
@@ -45,15 +40,15 @@ public class Dao {
     	
     }
 
-	public String add(int id, String name, String department)
+	public String addByUser(int id, String name, String department)
 	{ 
     	
     	try 
     	{
        	 
-            if(db.con!=null)
+            if(db.getConnection()!=null)
             {
-            	PreparedStatement stat = db.con.prepareStatement("insert into demo values(?,?,?) ");
+            	PreparedStatement stat = db.getConnection().prepareStatement("insert into demo values(?,?,?) ");
                 stat.setInt(1, id);
                 stat.setString(2, name);
                 stat.setString(3, department);
@@ -65,20 +60,20 @@ public class Dao {
     	{
        		return "Kindly check the values entered";
         }
-		return"Kindly check the values entered";
+		return"Contact Developer";
 		
 	}
 
 
-	public String update(int id, String name, String department)
+	public String updateByUser(int id, String name, String department)
 	{ 
     	
     	try 
     	{
        	 
-            if(db.con!=null)
+            if(db.getConnection()!=null)
             {
-            	PreparedStatement stat = db.con.prepareStatement(" update demo set t_name=?, t_department=? where t_id =? ");
+            	PreparedStatement stat = db.getConnection().prepareStatement(" update demo set t_name=?, t_department=? where t_id =? ");
                 stat.setInt(3, id);
                 stat.setString(1, name);
                 stat.setString(2, department);
@@ -90,17 +85,17 @@ public class Dao {
     	{
        		return "Kindly check the values entered";
         }
-		return"Kindly check the values entered";
+		return"Contact Developer";
 		
 	}
 	
-	public String delete(int id) 
+	public String deleteById(int id) 
 	{
 		try 
 		{
-			if(db.con!=null) 
+			if(db.getConnection()!=null) 
 			{
-			PreparedStatement stat = db.con.prepareStatement(" delete from demo where t_id=? ");
+			PreparedStatement stat = db.getConnection().prepareStatement(" delete from demo where t_id=? ");
 	        stat.setInt(1, id);
 	        stat.executeUpdate();
 	        return "Successful";
@@ -112,7 +107,7 @@ public class Dao {
 	{
    		return "Kindly check the id entered";
     }
-		return "Kindly check entered id";
+		return "Contact Developer";
    		
 	
 	} 
