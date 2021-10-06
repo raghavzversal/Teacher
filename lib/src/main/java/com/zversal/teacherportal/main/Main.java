@@ -22,8 +22,10 @@ public class Main {
 	public static LoggerUtil record = new LoggerUtil();
 	public static Gson gson = new GsonBuilder().disableHtmlEscaping().create();
 	
+	
 	public static void main(String[] args) throws IOException 
 	{
+		LoggerUtil.init();
 		port(conArguments.getPort());
 		path("/user", () -> 
 		{

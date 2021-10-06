@@ -6,7 +6,7 @@ import com.zversal.teacherportal.util.LoggerUtil;
 
 import static com.zversal.teacherportal.main.Main.gson;
 import static com.zversal.teacherportal.main.Main.teacherCrud;
-import static com.zversal.teacherportal.main.Main.record;
+
 
 
 import spark.Route;
@@ -14,7 +14,7 @@ public class Controller {
 	
 	public static final Route findById = (req,res)->
 	{
-		LoggerUtil.init();
+		
 		LoggerUtil.logger.info("Finding By Id");
 		HashMap<String, Object> map = new HashMap<>();
 		try 
@@ -38,7 +38,7 @@ public class Controller {
 	
 	public static final Route addByUser = (req,res)->
 	{
-		LoggerUtil.init();
+		
 		LoggerUtil.logger.info("Adding a user");
 		HashMap<String, String> map = new HashMap<>();
 		try 
@@ -63,7 +63,7 @@ public class Controller {
 	 
 		public static final Route updateByUser = (req,res)->
 		{
-			LoggerUtil.init();
+			
 			LoggerUtil.logger.info("Updating user");
 			HashMap<String, String> map = new HashMap<>(); 
 			try 
@@ -87,7 +87,7 @@ public class Controller {
 		
 		 public static final Route deleteById = (req,res)->
 		 {
-			 LoggerUtil.init();
+			 
 			 LoggerUtil.logger.info("Deletion by id");
 			 HashMap<String, String> map = new HashMap<>(); 
 			 try {
