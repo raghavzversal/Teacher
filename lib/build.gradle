@@ -2,10 +2,19 @@
 plugins {
     id 'java-library'
     id 'application'
+    id 'com.palantir.docker' version '0.22.1'
 }
 
 repositories {
     mavenCentral()
+}
+
+docker
+{
+	name "teacherportal"
+	dockerfile file('src/docker/Dockerfile')
+	copySpec.from(jar).rename(".*", "app.jar")
+	buildArgs(['JAR_FILE': "app.jar"])
 }
 
 dependencies {
@@ -18,7 +27,7 @@ dependencies {
 	implementation group: 'com.sparkjava', name: 'spark-core', version: '2.9.3'
 	implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.8'
 	implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.17'
-	implementation group: 'com.zaxxer', name: 'HikariCP', version: '5.0.0'
+	implementation group: 'com.zaxxer', name: 'HikariCP', version: '2.3.2'
 }
 
 
